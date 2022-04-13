@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <%- include('./head.ejs') %>
+  </head>
+  <body>
+    <section id="header">
+      <div class="container">
+        <div class="row box-settings box-register">
+          <div class="">
+            <h2 class="title-screen">
+                  Your infos
+                </h2>
+            <div class="col-sm-6">
+                
+                <div class="form-group">
+                  <h4>IP Address</h4>
+                  <p><%= ipAddress %></p>
+                </div>
+                <div class="form-group">
+                  <h4>Country</h4>
+                  <p><%= geo.country %></p>
+                </div>
+                <div class="form-group">
+                  <h4>Region</h4>
+                  <p><%= geo.region %></p>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <h4>City</h4>
+                  <p><%= geo.city %></p>
+                </div>
+                <div class="form-group">
+                  <h4>Timezone</h4>
+                  <p><%= geo.timezone %></p>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box-settings">
+                <h2 class="title-screen">
+                  Last addresses
+                </h2>
+                <ul>
+                  <% allInfos.forEach(function(info) { %>
+                    <li>
+                      <p><strong><%= info.get("ipAddress") %></strong></p>
+                      <p><strong>country</strong> <%= info.get("country") %>, <strong>region</strong> <%= info.get("region") %></p>
+                      <p><strong>connected</strong> <%= info.get("createdAt") %></p>
+                    </li>
+                  <% }); %>
+                </ul>
+            </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <div class="box-settings">
+                  <h2 class="title-screen">
+                    Top adresses
+                  </h2>
+                  <ul>
+                    <% ipCounts.forEach(function(ip) { %>
+                      <li>
+                        <strong><%= ip.objectId %></strong>   :    <%= ip.count %> times
+                      </li>
+                    <% }); %>
+                  </ul>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  </html>
